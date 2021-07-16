@@ -15,8 +15,21 @@ class Game {
 
     // create drivers
     this.drivers = [];
-    this.driver = new Driver(this, 400, 300);
-    this.driver.addDriver();
+    // console.log(typeof this.drivers);
+    // this.driver = new Driver(this, 100, 300);
+    this.driver = new Driver(this, 420, 350);
+
+    // start scoreboard
+    this.scoreboard = new Scoreboard(
+      this,
+      0,
+      1,
+      0
+      // *********** check if we should add more info
+      // this.player.speed,
+      // this.player.gas,
+      // this.game.player.distance
+    );
 
     // start the loop to paint things
     this.loop();
@@ -32,6 +45,7 @@ class Game {
 
   runLogic() {
     this.player.runLogic();
+    this.driver.addDriver();
   }
 
   clearScreen() {
@@ -44,13 +58,6 @@ class Game {
     this.racetrack.paint();
     this.player.paint();
     this.driver.paint();
-
-    // Create scoreboard class that takes game instance
-    // and in draw method gets this.game.player.distance
-    // and shows the distance, this.game.player.gas as well
-    this.context.font = '30px Arial';
-    this.context.fillText('Distance: ' + this.player.distance, 10, 50);
-    this.context.fillText('Speed: ' + this.player.speed, 10, 100);
-    this.context.fillText('Gas: ' + this.player.gas, 10, 150);
+    this.scoreboard.paint();
   }
 }

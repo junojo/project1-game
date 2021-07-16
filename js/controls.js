@@ -13,6 +13,7 @@ class Controls {
           break;
         case 'ArrowDown':
           this.game.player.y += 10;
+          this.game.player.speed -= 1;
           console.log('apertou down');
           break;
         case 'ArrowRight':

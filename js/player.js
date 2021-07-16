@@ -12,6 +12,7 @@ class Player {
   runLogic() {
     // run the Player logic
     this.distance += this.speed;
+    this.gas = this.distance * 0.01; // calc gas************
     console.log(this.distance, this.speed);
   }
 
@@ -22,7 +23,8 @@ class Player {
     context.fillRect(
       this.x - this.width / 2,
       //this.y - this.height / 2,
-      (this.game.canvas.height - this.height) / 2,
+      // (this.game.canvas.height - this.height) / 2 + 150,
+      this.game.canvas.height - 150, // change player position to bottom *******
       this.width,
       this.height
     );

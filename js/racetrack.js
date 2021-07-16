@@ -5,7 +5,6 @@ class RaceTrack {
     this.y = y;
     this.width = 400;
     this.height = game.canvas.height;
-    // this.lines = [];
     this.lineX = 300;
     this.lineY = 30;
   }
