@@ -17,7 +17,7 @@ class Game {
     this.drivers = [];
     // console.log(typeof this.drivers);
     // this.driver = new Driver(this, 100, 300);
-    this.driver = new Driver(this, 420, 350);
+    this.driver = new Driver(this, 420, 350, this.player.speed);
 
     // start scoreboard
     this.scoreboard = new Scoreboard(
@@ -40,12 +40,13 @@ class Game {
       this.runLogic();
       this.paint();
       this.loop(); // keep the loop ongoing
+      // console.log(this.player.speed);
     });
   }
 
   runLogic() {
     this.player.runLogic();
-    this.driver.addDriver();
+    // this.driver.addDriver();
   }
 
   clearScreen() {

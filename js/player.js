@@ -24,7 +24,8 @@ class Player {
       this.x - this.width / 2,
       //this.y - this.height / 2,
       // (this.game.canvas.height - this.height) / 2 + 150,
-      this.game.canvas.height - 150, // change player position to bottom *******
+      // this.game.canvas.height - 150, // change player position to bottom *******
+      this.game.canvas.height - (2 * this.height) / 1.5,
       this.width,
       this.height
     );
