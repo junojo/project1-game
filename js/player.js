@@ -6,14 +6,15 @@ class Player {
     this.speed = 0;
     this.width = 64;
     this.height = 96;
-    this.gas = 1;
+    this.gas = 1000;
   }
 
   runLogic() {
     // run the Player logic
     this.distance += this.speed;
-    this.gas = this.distance * 0.01; // calc gas************
+    // this.gas = this.distance * 0.01; // calc gas************
     console.log(this.distance, this.speed);
+    this.gas -= this.speed / 1000;
   }
 
   paint() {

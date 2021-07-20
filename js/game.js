@@ -17,7 +17,7 @@ class Game {
     this.drivers = [];
     // console.log(typeof this.drivers);
     // this.driver = new Driver(this, 100, 300);
-    this.driver = new Driver(this, 420, 350, this.player.speed);
+    // this.driver = new Driver(this, 420, 350, this.player.speed);
 
     // start scoreboard
     this.scoreboard = new Scoreboard(
@@ -35,18 +35,52 @@ class Game {
     this.loop();
   }
 
+  addDriver() {
+    const lowerX = (this.canvas.width - this.racetrack.width) / 2;
+    const upperX =
+      (this.canvas.width - this.racetrack.width) / 2 + this.racetrack.width;
+    const x = Math.random() * (upperX - lowerX) + lowerX;
+    this.drivers.push(
+      new Driver(
+        this,
+        x,
+        this.player.distance + this.canvas.height + 96,
+        this.player.speed
+      )
+    );
+    // console.log(this.drivers);
+  }
+
+  deleteDriver() {
+    console.log('hello' + this.drivers);
+    this.drivers.forEach((driver, index) => {
+      if (driver.distance < 0) {
+        this.drivers.splice(index, 1);
+        console.log('driver removed in game class');
+      }
+    });
+  }
+
   loop() {
     window.requestAnimationFrame(() => {
       this.runLogic();
       this.paint();
       this.loop(); // keep the loop ongoing
       // console.log(this.player.speed);
+      // console.log(this.drivers);
     });
   }
 
   runLogic() {
     this.player.runLogic();
     // this.driver.addDriver();
+    for (const driver of this.drivers) {
+      driver.runLogic();
+    }
+    if (Math.random() < 0.005) {
+      this.addDriver();
+    }
+    this.deleteDriver();
   }
 
   clearScreen() {
@@ -58,7 +92,10 @@ class Game {
     // console.log('paint player');
     this.racetrack.paint();
     this.player.paint();
-    this.driver.paint();
+    // this.driver.paint();
+    for (const driver of this.drivers) {
+      driver.paint();
+    }
     this.scoreboard.paint();
   }
 }
