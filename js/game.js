@@ -15,6 +15,7 @@ class Game {
 
     // create drivers
     this.drivers = [];
+    // this.addDriver();
     // console.log(typeof this.drivers);
     // this.driver = new Driver(this, 100, 300);
     // this.driver = new Driver(this, 420, 350, this.player.speed);
@@ -52,11 +53,29 @@ class Game {
   }
 
   deleteDriver() {
-    console.log('hello' + this.drivers);
+    // console.log('delete drivers array' + this.drivers);
+    // console.log(this.drivers[0]);
     this.drivers.forEach((driver, index) => {
-      if (driver.distance < 0) {
-        this.drivers.splice(index, 1);
+      if (driver.distance < this.player.distance - 100) {
         console.log('driver removed in game class');
+        this.drivers.splice(index, 1);
+      }
+    });
+  }
+
+  checkCollision() {
+    // console.log('colision check started');
+    const player = this.player;
+    this.drivers.forEach((driver, index) => {
+      if (
+        player.x + player.width / 2 >= driver.x - driver.width / 2 &&
+        player.x + player.width / 2 <= driver.x + driver.width / 2 &&
+        player.distance + player.height / 2 >=
+          driver.distance - driver.height / 2 &&
+        player.distance + player.height / 2 <=
+          driver.distance + driver.height / 2
+      ) {
+        console.log('colision true');
       }
     });
   }
@@ -80,6 +99,7 @@ class Game {
     if (Math.random() < 0.005) {
       this.addDriver();
     }
+    this.checkCollision();
     this.deleteDriver();
   }
 

@@ -18,12 +18,15 @@ class Driver {
     ];
     this.pickColor = Math.floor(Math.random() * this.colors.length); // randomize color
     this.color = this.colors[this.pickColor];
-    console.log(this.color);
+    // console.log(this.color);
   }
 
   runLogic() {
     this.distance += this.speed;
-    console.log(this.game.drivers);
+    this.game.drivers.forEach((driver) => {
+      // console.log(driver.distance);
+    });
+    //console.log(this.game.drivers);
     // this.deleteDriver();
   }
 

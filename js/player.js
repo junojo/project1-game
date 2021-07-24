@@ -13,7 +13,7 @@ class Player {
     // run the Player logic
     this.distance += this.speed;
     // this.gas = this.distance * 0.01; // calc gas************
-    console.log(this.distance, this.speed);
+    // console.log(this.distance, this.speed);
     this.gas -= this.speed / 1000;
   }
 
